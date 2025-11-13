@@ -7,83 +7,137 @@
             --gray: #979797;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--white);
-            background: linear-gradient(180deg, var(--black) 0%, var(--black) 20%, var(--secondary) 40%, var(--tertiary) 70%, var(--black) 100%);
-            min-height: 100vh;
-        }
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--white);
+    background: linear-gradient(180deg, var(--black) 0%, var(--black) 20%, var(--secondary) 40%, var(--tertiary) 70%, var(--black) 100%);
+    min-height: 100vh;
+}
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
 
-        .hero-section {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 60px;
-            padding: 100px 0;
-            min-height: 80vh;
-        }
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    padding: 100px 0;
+    min-height: 80vh;
+}
 
-        .hero-content {
-            flex: 1;
-            max-width: 600px;
-        }
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+}
 
-        .hero-content h1 {
-            font-size: 4.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
+.hero-content h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
 
-        .hero-content p {
-            font-size: 1.25rem;
-            font-family: 'Urbanist', sans-serif;
-            color: var(--primary);
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
-        }
+.hero-content p {
+    font-size: 1.25rem;
+    font-family: 'Urbanist', sans-serif;
+    color: var(--primary);
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+}
 
-        .btn-primary {
-            display: inline-block;
-            padding: 15px 40px;
-            background: var(--primary);
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-family: 'Urbanist', sans-serif;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
-        }
+.btn-primary {
+    display: inline-block;
+    padding: 15px 40px;
+    background: var(--primary);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-family: 'Urbanist', sans-serif;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
 
-        .btn-primary:hover {
-            background: #c9a96a;
-            transform: scale(1.05);
-        }
+.btn-primary:hover {
+    background: #c9a96a;
+    transform: scale(1.05);
+}
 
-        .hero-image {
-            flex: 1;
-            max-width: 600px;
-        }
+.hero-image {
+    flex: 1;
+    max-width: 600px;
+}
 
-        .hero-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.header {
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(223, 189, 122, 0.2);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav-menu a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: var(--primary);
+}
+
+.nav-btn {
+    background: var(--primary);
+    color: var(--white);
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: #c9a96a;
+    transform: scale(1.05);
+}
