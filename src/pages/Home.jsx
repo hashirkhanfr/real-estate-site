@@ -4,6 +4,12 @@ import logoBahria from '../assets/images/logo_Bahria.png';
 import logoDHA from '../assets/images/logo_DHA.png';
 import logoFaisalHills from '../assets/images/logo_FaisalHills.png';
 import logoFaisalTown from '../assets/images/logo_FaisalTown.png';
+import serviceSell from '../assets/icons/service-sell.svg';
+import serviceBuy from '../assets/icons/service-buy.svg';
+import serviceRent from '../assets/icons/service-rent.svg';
+import house6Marla from '../assets/images/6MarlaHouse.jpeg';
+import house8Marla from '../assets/images/8MArlaHouse.jpeg';
+import house10Marla from '../assets/images/10MarlaHouse.webp';
 import SEO from '../components/SEO';
 import ServiceCard from '../components/ServiceCard';
 import DealItem from '../components/DealItem';
@@ -28,17 +34,17 @@ const Home = () => {
                 <h2 className="section-title">Our Services</h2>
                 <div className="services-grid">
                     <ServiceCard
-                        image="https://placehold.co/60x60"
+                        image={serviceSell}
                         title="SELL"
                         description="without any hassle"
                     />
                     <ServiceCard
-                        image="https://placehold.co/60x60"
+                        image={serviceBuy}
                         title="BUY"
                         description="without any fear"
                     />
                     <ServiceCard
-                        image="https://placehold.co/60x60"
+                        image={serviceRent}
                         title="RENT"
                         description="at your ease"
                     />
@@ -59,20 +65,20 @@ const Home = () => {
                 <h2 className="section-title">Hot Investment Opportunities</h2>
                 <div className="opportunities-grid">
                     <OpportunityCard
-                        image="https://placehold.co/100x100"
-                        alt="Opportunity 1"
+                        image={house6Marla}
+                        alt="6 Marla House"
                         size="6 Marla"
                         bookingText={<>BOOKING<br />FOR JUST<br />PKR 699,999</>}
                     />
                     <OpportunityCard
-                        image="https://placehold.co/100x100"
-                        alt="Opportunity 2"
+                        image={house10Marla}
+                        alt="10 Marla House"
                         size="10 Marla"
                         bookingText={<>BOOKING<br />FOR JUST<br />PKR 999,999</>}
                     />
                     <OpportunityCard
-                        image="https://placehold.co/100x100"
-                        alt="Opportunity 3"
+                        image={house8Marla}
+                        alt="8 Marla House"
                         size="8 Marla"
                         bookingText={<>BOOKING<br />FOR JUST<br />PKR 899,999</>}
                     />
