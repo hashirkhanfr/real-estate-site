@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../config/firebase';
+import SEO from '../components/SEO';
 import PropertyDetailsModal from '../components/admin/PropertyDetailsModal';
 import '../styles/listings.css';
 import '../styles/admin-dashboard.css';
@@ -40,6 +41,7 @@ const Listings = () => {
     return (
         <section className="listings-section section">
             <div className="container">
+                <SEO title="Listings - Al Rafay Associates" />
                 <h1 className="page-title">Housing Projects</h1>
 
                 {loading ? (

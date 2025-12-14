@@ -1,9 +1,11 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import '../styles/admin-login.css';
 
 const AdminLogin = () => {
     return (
         <section className="admin-section">
+            <SEO title="Admin Login - Al Rafay Associates" />
             <div className="login-container">
                 <h1 className="section-title">Admin Login</h1>
                 <p className="login-subtitle">Welcome back. Please enter your details.</p>

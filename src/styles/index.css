@@ -100,8 +100,11 @@
 }
 
 .deal-item {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    background: #fff;
+    padding: 10px;
     border-radius: 20px;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -244,6 +247,13 @@
     transform: scale(1.02);
 }
 
+@media (min-width: 1024px) {
+    .deal-item {
+        width: 120px;
+        height: 120px;
+    }
+}
+
 /* --- Homepage Responsive --- */
 @media (max-width: 1024px) {
     .hero-section {
@@ -251,11 +261,25 @@
         text-align: center;
         padding: 60px 0;
     }
-    .hero-content, .hero-image { max-width: 100%; }
-    .hero-content h1 { font-size: 3rem; }
+
+    .hero-content,
+    .hero-image {
+        max-width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+    }
 }
 
 @media (max-width: 768px) {
-    .hero-content h1 { font-size: 2.5rem; }
-    .service-card, .opportunity-card { min-width: 280px; width: 100%; }
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .service-card,
+    .opportunity-card {
+        min-width: 280px;
+        width: 100%;
+    }
 }

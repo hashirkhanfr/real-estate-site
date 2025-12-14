@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { collection, getDocs, addDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
+import SEO from '../components/SEO';
 import AdminPropertyForm from '../components/admin/AdminPropertyForm';
 import AdminPropertyList from '../components/admin/AdminPropertyList';
 import PropertyDetailsModal from '../components/admin/PropertyDetailsModal';
@@ -82,6 +83,7 @@ const AdminDashboard = () => {
 
     return (
         <div className="admin-dashboard-container">
+            <SEO title="Dashboard - Al Rafay Associates" />
             {/* Left Side: Form */}
             <div className="admin-sidebar">
                 <h2>

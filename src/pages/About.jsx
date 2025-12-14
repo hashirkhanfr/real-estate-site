@@ -1,9 +1,11 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import '../styles/about.css';
 
 const About = () => {
     return (
         <>
+            <SEO title="About - Al Rafay Associates" />
             <section className="about-intro">
                 <div className="intro-header">
                     <h2 className="est-title">ESTABLISHED IN 2000</h2>

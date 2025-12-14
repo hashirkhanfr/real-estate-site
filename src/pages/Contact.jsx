@@ -1,9 +1,11 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import '../styles/contact.css';
 
 const Contact = () => {
     return (
         <>
+            <SEO title="Contact - Al Rafay Associates" />
             <section className="socials-section">
                 <div className="socials-content">
                     <h1 className="socials-title">SOCIALS</h1>
