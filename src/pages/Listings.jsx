@@ -1,78 +1,88 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../config/firebase';
+import PropertyDetailsModal from '../components/admin/PropertyDetailsModal';
 import '../styles/listings.css';
+import '../styles/admin-dashboard.css';
 
 const Listings = () => {
+    const [properties, setProperties] = useState([]);
+    const [selectedProperty, setSelectedProperty] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchProperties = async () => {
+            try {
+                const querySnapshot = await getDocs(collection(db, "properties"));
+                const propertyList = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                setProperties(propertyList);
+            } catch (error) {
+                console.error("Error fetching properties:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProperties();
+    }, []);
+
+    const openDetails = (property) => {
+        setSelectedProperty(property);
+    };
+
+    const closeDetails = () => {
+        setSelectedProperty(null);
+    };
+
     return (
-        <section className="listings-section">
-            <h1 className="page-title">Housing Projects</h1>
+        <section className="listings-section section">
+            <div className="container">
+                <h1 className="page-title">Housing Projects</h1>
 
-            <div className="listings-grid">
-                <div className="listing-card">
-                    <div className="card-image">
-                        <img src="https://placehold.co/400x300/1a1a1a/white?text=Project+Img" alt="Project Image" />
+                {loading ? (
+                    <p style={{ textAlign: 'center', color: '#fff' }}>Loading projects...</p>
+                ) : (
+                    <div className="listings-grid">
+                        {properties.map((property) => (
+                            <div key={property.id} className="listing-card" onClick={() => openDetails(property)} style={{ cursor: 'pointer' }}>
+                                <div className="card-image">
+                                    {property.imageUrl ? (
+                                        <img src={property.imageUrl} alt={property.name} />
+                                    ) : (
+                                        <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ccc' }}>
+                                            No Image
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="card-details">
+                                    <h3>{property.name}</h3>
+                                    <p className="location">Location: {property.location}</p>
+                                    <p className="description">
+                                        {property.description?.length > 100
+                                            ? `${property.description.substring(0, 100)}...`
+                                            : property.description}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                    <div className="card-details">
-                        <h3>RUDN ENCLAVE</h3>
-                        <p className="location">Location: Adiala Road, RWP</p>
-                        <p className="description">Experience luxury living with state-of-the-art amenities and prime location access.</p>
-                    </div>
-                </div>
+                )}
 
-                <div className="listing-card">
-                    <div className="card-image">
-                        <img src="https://placehold.co/400x300/1a1a1a/white?text=Project+Img" alt="Project Image" />
-                    </div>
-                    <div className="card-details">
-                        <h3>BLUE WORLD CITY</h3>
-                        <p className="location">Location: Chakri Road</p>
-                        <p className="description">The world's first purpose-built tourist city offering massive ROI potential.</p>
-                    </div>
-                </div>
-
-                <div className="listing-card">
-                    <div className="card-image">
-                        <img src="https://placehold.co/400x300/1a1a1a/white?text=Project+Img" alt="Project Image" />
-                    </div>
-                    <div className="card-details">
-                        <h3>KINGDOM VALLEY</h3>
-                        <p className="location">Location: M-2 Motorway</p>
-                        <p className="description">Affordable housing scheme under Naya Pakistan Housing Program.</p>
-                    </div>
-                </div>
-
-                <div className="listing-card">
-                    <div className="card-image">
-                        <img src="https://placehold.co/400x300/1a1a1a/white?text=Project+Img" alt="Project Image" />
-                    </div>
-                    <div className="card-details">
-                        <h3>DHA ISLAMABAD</h3>
-                        <p className="location">Location: GT Road</p>
-                        <p className="description">Premium defense housing community with secure environment and top facilities.</p>
-                    </div>
-                </div>
-
-                <div className="listing-card">
-                    <div className="card-image">
-                        <img src="https://placehold.co/400x300/1a1a1a/white?text=Project+Img" alt="Project Image" />
-                    </div>
-                    <div className="card-details">
-                        <h3>BAHRIA TOWN</h3>
-                        <p className="location">Location: Phase 8, RWP</p>
-                        <p className="description">Modern infrastructure and commercial hubs making it ideal for business and living.</p>
-                    </div>
-                </div>
-
-                <div className="listing-card">
-                    <div className="card-image">
-                        <img src="https://placehold.co/400x300/1a1a1a/white?text=Project+Img" alt="Project Image" />
-                    </div>
-                    <div className="card-details">
-                        <h3>PARK VIEW CITY</h3>
-                        <p className="location">Location: Malot Road</p>
-                        <p className="description">Beautiful scenic views with eco-friendly infrastructure and modern housing.</p>
-                    </div>
-                </div>
+                {properties.length === 0 && !loading && (
+                    <p style={{ textAlign: 'center', color: '#fff' }}>No properties listed yet.</p>
+                )}
             </div>
+
+            {/* Reuse the Admin Modal */}
+            {selectedProperty && (
+                <PropertyDetailsModal
+                    property={selectedProperty}
+                    onClose={closeDetails}
+                />
+            )}
         </section>
     );
 };
