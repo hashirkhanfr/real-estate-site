@@ -464,23 +464,91 @@
 @media (max-width: 768px) {
     .admin-dashboard-container {
         flex-direction: column;
-        overflow-y: auto;
+        height: 100dvh;
+        overflow: hidden;
     }
 
-    .admin-sidebar {
+    .admin-sidebar,
+    .admin-main-content {
         width: 100%;
-        height: auto;
+        transition: flex 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
         border-right: none;
-        border-bottom: 1px solid rgba(223, 189, 122, 0.1);
+        background: rgba(0, 0, 0, 0.4);
     }
 
     .admin-main-content {
-        width: 100%;
-        overflow: visible;
         background: none;
+    }
+
+    .admin-sidebar h2,
+    .dashboard-header {
+        cursor: pointer;
+        flex-shrink: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .admin-form-wrapper,
+    .admin-list-wrapper {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        flex: 1;
+        overflow-y: auto;
+        opacity: 1;
+        width: 100%;
+    }
+
+    .mobile-collapsed {
+        flex: 0 0 70px;
+        background: rgba(0, 0, 0, 0.6);
+        border-bottom: 1px solid rgba(223, 189, 122, 0.2);
+        padding-bottom: 0;
+    }
+
+    .mobile-collapsed .admin-form-wrapper,
+    .mobile-collapsed .admin-list-wrapper {
+        opacity: 0;
+        pointer-events: none;
+        height: 0;
+        overflow: hidden;
+        transform: translateY(20px);
+    }
+
+    .mobile-collapsed h2,
+    .mobile-collapsed .dashboard-header h2 {
+        color: #94a3b8;
+        font-size: 1.2rem;
+    }
+
+    .mobile-collapsed .dashboard-header .logout-btn {
+        display: none;
+    }
+
+    .mobile-expanded {
+        flex: 1;
+        background: rgba(0, 0, 0, 0.2);
+        cursor: default;
+    }
+
+    .mobile-expanded .admin-form-wrapper,
+    .mobile-expanded .admin-list-wrapper {
+        opacity: 1;
+        pointer-events: auto;
+        margin-top: 1rem;
+        transform: translateY(0);
     }
 
     .modal-content {
         width: 95%;
+        max-height: 85vh;
     }
 }
