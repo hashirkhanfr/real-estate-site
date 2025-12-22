@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { collection, getDocs, addDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { db } from '../config/firebase';
+import { signOut } from 'firebase/auth';
+import { db, auth } from '../config/firebase';
 import SEO from '../components/SEO';
 import AdminPropertyForm from '../components/admin/AdminPropertyForm';
 import AdminPropertyList from '../components/admin/AdminPropertyList';
@@ -12,6 +14,7 @@ const AdminDashboard = () => {
     const [selectedProperty, setSelectedProperty] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingProperty, setEditingProperty] = useState(null);
+    const navigate = useNavigate();
 
     const propertiesCollection = collection(db, "properties");
 
@@ -63,6 +66,15 @@ const AdminDashboard = () => {
         }
     };
 
+    const handleLogout = async () => {
+        try {
+            await signOut(auth);
+            navigate('/admin-login');
+        } catch (error) {
+            console.error("Error logging out: ", error);
+        }
+    };
+
     const openDetails = (property) => {
         setSelectedProperty(property);
         setIsModalOpen(true);
@@ -98,7 +110,12 @@ const AdminDashboard = () => {
 
             {/* Right Side: List */}
             <div className="admin-main-content">
-                <h2>Properties List</h2>
+                <div className="dashboard-header">
+                    <h2>Properties List</h2>
+                    <button className="logout-btn" onClick={handleLogout}>
+                        Logout
+                    </button>
+                </div>
                 <AdminPropertyList
                     properties={properties}
                     onViewDetails={openDetails}

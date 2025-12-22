@@ -6,6 +6,7 @@ import Listings from './pages/Listings';
 import Contact from './pages/Contact';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
+import ProtectedRoute from './components/admin/ProtectedRoute';
 
 function App() {
   return (
@@ -16,7 +17,14 @@ function App() {
         <Route path="listings" element={<Listings />} />
         <Route path="contact" element={<Contact />} />
         <Route path="admin-login" element={<AdminLogin />} />
-        <Route path="admin-dashboard" element={<AdminDashboard />} />
+        <Route
+          path="admin-dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
       </Route>
     </Routes>
   );
